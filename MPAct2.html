@@ -1,0 +1,52 @@
+<Activity2>
+<html>
+<head>
+    <title>Search for a Value</title>
+</head>
+<body>
+
+<h2>Search for a Value</h2>
+
+<input type="text" id="arr" placeholder="10,20,30,40">
+<input type="number" id="search" placeholder="Search value">
+<button onclick="searchNum()">Search</button>
+<hr>
+
+<table border="1" id="tbl">
+    <tr>
+        <th>Index</th>
+        <th>Value</th>
+    </tr>
+</table>
+
+<p id="result"></p>
+
+<script>
+function searchNum() {
+    let a = document.getElementById("arr").value.split(",");
+    let s = document.getElementById("search").value;
+    let found = false;
+
+    let table = "<tr><th>Index</th><th>Value</th></tr>";
+
+    for (let i = 0; i < a.length; i++) {
+        table += "<tr><td>" + i + "</td><td>" + a[i] + "</td></tr>";
+
+        if (a[i].trim() == s) {
+            found = true;
+            document.getElementById("result").innerHTML =
+                "Found at index " + i;
+        }
+    }
+
+    document.getElementById("tbl").innerHTML = table;
+
+    if (!found) {
+        document.getElementById("result").innerHTML =
+            "Value not found.";
+    }
+}
+</script>
+
+</body>
+</html>
