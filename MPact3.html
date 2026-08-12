@@ -1,0 +1,63 @@
+<Activity3>
+<html>
+<head>
+    <title>Sort the Entered Array</title>
+</head>
+<body>
+
+<h2>Sort the Entered Array</h2>
+
+<label>Enter numbers separated by commas:</label><br><br>
+<input type="text" id="numbers" size="30" placeholder="5,2,8,1,9">
+<button onclick="sortArray()">Sort</button><br><br>
+<hr>
+
+<div id="output"></div>
+
+<script>
+function sortArray() {
+
+    let input = document.getElementById("numbers").value;
+    let arr = input.split(",").map(Number);
+
+    let original = [...arr];
+
+    let before = "<h3>Before Sorting</h3>";
+    before += "<table border='1' cellpadding='5'>";
+    before += "<tr><th>Index</th><th>Value</th></tr>";
+
+    for(let i = 0; i < original.length; i++){
+        before += "<tr><td>" + i + "</td><td>" + original[i] + "</td></tr>";
+    }
+
+    before += "</table>";
+
+    for(let i = 0; i < arr.length - 1; i++){
+        for(let j = 0; j < arr.length - i - 1; j++){
+            if(arr[j] > arr[j + 1]){
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+    let after = "<h3>After Sorting</h3>";
+    after += "<table border='1' cellpadding='5'>";
+    after += "<tr><th>Index</th><th>Value</th></tr>";
+
+    for(let i = 0; i < arr.length; i++){
+        after += "<tr><td>" + i + "</td><td>" + arr[i] + "</td></tr>";
+    }
+
+    after += "</table>";
+
+    document.getElementById("output").innerHTML =
+        "<p><b>Original Array:</b> " + original.join(", ") + "</p>" +
+        "<p><b>Sorted Array:</b> " + arr.join(", ") + "</p>" +
+        before + "<br>" + after;
+}
+</script>
+
+</body>
+</html>
